@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>AI Chatbot</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-badge">AI</div>
+          <div class="brand-copy">
+            <p class="eyebrow">Assistant</p>
+            <h1>Chatbot</h1>
+          </div>
+        </div>
+        <button class="ghost-btn" type="button">New chat</button>
+      </header>
+
+      <main id="chat_container" aria-live="polite"></main>
+
+      <form aria-label="Chat form">
+        <div class="input-shell">
+          <textarea
+            name="prompt"
+            id="promptInput"
+            rows="1"
+            placeholder="Ask anything..."
+            aria-label="Type your message"
+          ></textarea>
+          <button type="submit" aria-label="Send message">
+            <img src="assets/send.svg" alt="Send" />
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <script type="module" src="/script.js"></script>
+  </body>
+</html>
