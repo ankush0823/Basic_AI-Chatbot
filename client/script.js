@@ -1,15 +1,20 @@
-import bot from './assets/bot.svg'
-import user from './assets/user.svg'
-
-const form = document.querySelector('form')
+const form = document.querySelector('#promptForm')
 const chatContainer = document.querySelector('#chat_container')
 const textarea = document.querySelector('#promptInput')
+const resetBtn = document.querySelector('#resetBtn')
 
-let loadInterval;
+let loadInterval
 
 function autoResizeTextarea() {
   textarea.style.height = 'auto'
   textarea.style.height = `${Math.min(textarea.scrollHeight, 220)}px`
+}
+
+function timeNow() {
+  const d = new Date()
+  const h = String(d.getHours()).padStart(2, '0')
+  const m = String(d.getMinutes()).padStart(2, '0')
+  return `${h}:${m}`
 }
 
 function loader(element) {
@@ -50,7 +55,8 @@ function chatStripe(isAI, value, uniqueId) {
     <div class="wrapper ${isAI ? 'ai' : 'user'}">
       <div class="chat">
         <div class="profile">
-          <img src="${isAI ? bot : user}" alt="${isAI ? 'bot' : 'user'}" />
+          <span class="tag">${isAI ? 'AI' : 'You'}</span>
+          <span class="time">${timeNow()}</span>
         </div>
         <div class="message" id="${uniqueId}">${value}</div>
       </div>
@@ -118,6 +124,8 @@ const handleSubmit = async (e) => {
     clearInterval(loadInterval)
     messageDiv.innerHTML = 'Unable to reach the AI server.'
   }
+
+  chatContainer.scrollTop = chatContainer.scrollHeight
 }
 
 textarea.addEventListener('input', autoResizeTextarea)
@@ -129,3 +137,10 @@ textarea.addEventListener('keydown', (event) => {
 })
 
 form.addEventListener('submit', handleSubmit)
+
+resetBtn.addEventListener('click', () => {
+  chatContainer.innerHTML = ''
+  form.reset()
+  autoResizeTextarea()
+  textarea.focus()
+})
