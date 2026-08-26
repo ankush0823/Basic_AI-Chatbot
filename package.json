@@ -1,0 +1,16 @@
+{
+  "name": "basic_ai-chatbot-main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd Server && npx nodemon server.js\" \"cd client && npm run dev\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}
